@@ -40,7 +40,7 @@ function Checkout() {
     }
 
     // TROQUE PELO NÚMERO REAL DA VERDE NATURE
-    const phoneNumber = '5511999999999';
+    const phoneNumber = '5527999505856';
     
     const encodedMessage = encodeURIComponent(message);
     
