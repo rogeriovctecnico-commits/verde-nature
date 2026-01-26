@@ -15,43 +15,88 @@ function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ backgroundColor: '#f5f0e8', minHeight: '100vh' }}>
+      
       {/* Hero */}
-      <section className="bg-linear-to-r from-green-600 to-green-800 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section style={{
+        background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+        padding: '60px 24px',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{
+            fontSize: '48px',
+            fontWeight: 'bold',
+            color: '#ffffff',
+            marginBottom: '16px'
+          }}>
             🌿 Verde Nature 🌿
           </h1>
-          <p className="text-xl text-green-100 mb-8">
+          <p style={{
+            fontSize: '20px',
+            color: '#d4e8d1',
+            marginBottom: '32px'
+          }}>
             Produtos naturais para uma vida mais saudável
           </p>
-          
+
           {/* Busca */}
-          <div className="max-w-md mx-auto">
+          <div style={{ maxWidth: '500px', margin: '0 auto' }}>
             <input
               type="text"
               placeholder="🔍 Buscar produtos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-4 focus:ring-green-300"
+              style={{
+                width: '100%',
+                padding: '16px 24px',
+                borderRadius: '50px',
+                border: 'none',
+                fontSize: '16px',
+                backgroundColor: '#fdfbf7',
+                color: '#3d4a3a',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                outline: 'none',
+                boxSizing: 'border-box'
+              }}
             />
           </div>
         </div>
       </section>
 
       {/* Filtros e Produtos */}
-      <section className="container mx-auto px-4 py-12">
+      <section style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '48px 32px'
+      }}>
+        
         {/* Categorias */}
-        <div className="flex flex-wrap gap-2 mb-8 justify-center">
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '12px',
+          marginBottom: '40px',
+          justifyContent: 'center'
+        }}>
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full transition-colors ${
-                selectedCategory === category
-                  ? 'bg-green-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-green-100'
-              }`}
+              style={{
+                padding: '12px 24px',
+                borderRadius: '50px',
+                border: 'none',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                backgroundColor: selectedCategory === category ? '#4a7c43' : '#fdfbf7',
+                color: selectedCategory === category ? '#ffffff' : '#4a5c47',
+                boxShadow: selectedCategory === category 
+                  ? '0 4px 15px rgba(74, 124, 67, 0.3)' 
+                  : '0 2px 8px rgba(0,0,0,0.05)'
+              }}
             >
               {category}
             </button>
@@ -59,7 +104,12 @@ function Home() {
         </div>
 
         {/* Grid de Produtos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '24px',
+          justifyItems: 'center'
+        }}>
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -67,13 +117,47 @@ function Home() {
 
         {/* Sem resultados */}
         {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-xl">
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 20px'
+          }}>
+            <p style={{
+              fontSize: '20px',
+              color: '#6b7c68'
+            }}>
               😕 Nenhum produto encontrado
             </p>
           </div>
         )}
       </section>
+
+      {/* Footer */}
+      <footer style={{
+        backgroundColor: '#2d5a27',
+        padding: '40px 24px',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h3 style={{ color: '#ffffff', fontSize: '20px', marginBottom: '16px' }}>
+            🌿 Verde Nature
+          </h3>
+          <p style={{ color: '#d4e8d1', fontSize: '14px', marginBottom: '24px' }}>
+            Produtos naturais de qualidade para sua saúde e bem-estar
+          </p>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: '24px',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{ color: '#a8d4a2', fontSize: '14px' }}>📱 (27) 99950-5856</span>
+            <a href="mailto:contato@verdenature.com" style={{ color: '#a8d4a2', fontSize: '14px' }}>📧 contato@verdenature.com</a>
+          </div>
+          <p style={{ color: '#7ab573', fontSize: '12px', marginTop: '24px' }}>
+            © 2025 Verde Nature - Todos os direitos reservados
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

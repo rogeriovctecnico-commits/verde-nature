@@ -1,40 +1,102 @@
+// src/components/Header.jsx
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 function Header() {
-  const { getCartCount } = useCart();
-  const cartCount = getCartCount();
+  const { cart } = useCart();
+  const { user, logout, isAuthenticated } = useAuth();
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <header className="bg-green-700 text-green-100 shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-3xl">🌿</span>
-            <span className="text-2xl text-green-100 font-bold">Verde Nature</span>
-          </Link>
+    <header style={{
+      backgroundColor: '#2d5a27',
+      padding: '16px 32px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      position: 'sticky',
+      top: 0,
+      zIndex: 100
+    }}>
+      {/* Logo */}
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <h1 style={{ color: '#fff', fontSize: '24px', fontWeight: 'bold' }}>
+          🌿 Verde Nature
+        </h1>
+      </Link>
 
-          <nav className="flex items-center gap-6">
-            <Link 
-              to="/" 
-              className="hover:text-green-200 transition-colors"
+      {/* Menu */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        
+        {/* Carrinho */}
+        <Link to="/cart" style={{
+          display: 'flex',
+          alignItems: 'center', gap: '8px',
+          color: '#fff',
+          textDecoration: 'none',
+          fontSize: '15px'
+        }}>
+          <span style={{ fontSize: '20px' }}>🛒</span>
+          <span>Carrinho</span>
+          {totalItems > 0 && (
+            <span style={{
+              backgroundColor: '#f59e0b',
+              color: '#fff',
+              padding: '2px 8px',
+              borderRadius: '12px',
+              fontSize: '12px',
+              fontWeight: 'bold'
+            }}>
+              {totalItems}
+            </span>
+          )}
+        </Link>
+
+        {/* Usuário Logado ou Links de Login */}
+        {isAuthenticated() ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <span style={{ color: '#a8d4a2', fontSize: '14px' }}>
+              Olá, {user?.name?.split(' ')[0]}
+            </span>
+            <button
+              onClick={logout}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '8px',
+                border: 'none',
+                backgroundColor: '#ffffff20',
+                color: '#fff',
+                fontSize: '14px',
+                cursor: 'pointer'
+              }}
             >
-              Produtos
+              Sair
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Link to="/login" style={{
+              color: '#a8d4a2',
+              textDecoration: 'none',
+              fontSize: '14px'
+            }}>
+              Entrar
             </Link>
-            
-            <Link 
-              to="/cart" 
-              className="relative bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-100 transition-colors"
-            >
-              🛒 Carrinho
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
+            <Link to="/register" style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              backgroundColor: '#4a7c43',
+              color: '#fff',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: '600'
+            }}>
+              Cadastrar
             </Link>
-          </nav>
-        </div>
+          </div>
+        )}
       </div>
     </header>
   );
