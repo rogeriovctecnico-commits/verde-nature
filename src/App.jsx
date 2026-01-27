@@ -12,7 +12,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import Login from './pages/Login.js';
+import Login from './pages/Login.jsx';
 import Register from './pages/Register';
 
 // Páginas Admin
