@@ -1,71 +1,92 @@
-// src/components/Header.jsx
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 function Header() {
-  const { cart } = useCart();
-  const { user, logout, isAuthenticated } = useAuth();
+  const { totalItems } = useCart();
+  const { isAuthenticated, user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
-      <header style={{
-          backgroundColor: '#2d5a27',
-          padding: '8px 12px',  // ← MENOR
+      <header
+        style={{
+          background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+          padding: '12px 24px',
           position: 'sticky',
           top: 0,
-          zIndex: 100
-        }}>
-        <div style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '32px'
-        }}>
+          zIndex: 100,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: 56,
+            position: 'relative',
+          }}
+        >
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <h1 style={{ 
-              color: '#fff', 
-              fontSize: '18px', 
-              fontWeight: 'bold',
-              margin: 0
-            }}>
+            <h1
+              style={{
+                color: '#d4e8d1',
+                fontSize: 24,
+                fontWeight: 900,
+                margin: 0,
+                userSelect: 'none',
+              }}
+            >
               🌿 Verde Nature
             </h1>
           </Link>
 
-          {/* Menu Desktop */}
-          <nav className="header-desktop" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px'
-          }}>
-            {/* Carrinho */}
-            <Link to="/cart" style={{
+          {/* Menu desktop */}
+          <nav
+            className="header-desktop"
+            style={{
               display: 'flex',
+              gap: 24,
               alignItems: 'center',
-              gap: '6px',
-              color: '#fff',
-              textDecoration: 'none',
-              fontSize: '14px'
-            }}>
-              <span style={{ fontSize: '18px' }}>🛒</span>
+            }}
+          >
+            {/* Carrinho */}
+            <Link
+              to="/cart"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                color: '#a8d4a2',
+                textDecoration: 'none',
+                fontSize: 16,
+                fontWeight: 600,
+                position: 'relative',
+              }}
+            >
+              <span style={{ fontSize: 22 }}>🛒</span>
               <span>Carrinho</span>
               {totalItems > 0 && (
-                <span style={{
-                  backgroundColor: '#f59e0b',
-                  color: '#fff',
-                  padding: '2px 8px',
-                  borderRadius: '12px',
-                  fontSize: '11px',
-                  fontWeight: 'bold'
-                }}>
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: -6,
+                    right: -10,
+                    backgroundColor: '#f59e0b',
+                    color: '#fff',
+                    padding: '2px 8px',
+                    borderRadius: 12,
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    boxShadow: '0 0 6px #f59e0b',
+                    userSelect: 'none',
+                  }}
+                >
                   {totalItems}
                 </span>
               )}
@@ -73,201 +94,183 @@ function Header() {
 
             {/* Usuário */}
             {isAuthenticated() ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ color: '#a8d4a2', fontSize: '13px' }}>
-                  Olá, {user?.name?.split(' ')[0]}
+              <>
+                <span
+                  style={{
+                    color: '#c1d8b9',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    userSelect: 'none',
+                  }}
+                >
+                  Olá, <strong style={{ color: '#f0f9f1' }}>{user?.name?.split(' ')[0]}</strong>
                 </span>
                 <button
                   onClick={logout}
                   style={{
-                    padding: '8px 14px',
-                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    borderRadius: 8,
                     border: 'none',
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: '#fff',
-                    fontSize: '13px',
-                    cursor: 'pointer'
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    color: '#a8d4a2',
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'background-color 0.3s ease',
                   }}
-                >
-                  Sair
-                </button>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Link to="/login" style={{
-                  color: '#a8d4a2',
-                  textDecoration: 'none',
-                  fontSize: '13px'
-                }}>
-                  Entrar
-                </Link>
-                <Link to="/register" style={{
-                  padding: '8px 14px',
-                  borderRadius: '8px',
-                  backgroundColor: '#4a7c43',
-                  color: '#fff',
-                  textDecoration: 'none',
-                  fontSize: '13px',
-                  fontWeight: '600'
-                }}>
-                  Cadastrar
-                </Link>
-              </div>
-            )}
-          </nav>
-
-          {/* Menu Mobile - Ícones */}
-          <div className="header-mobile" style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            {/* Carrinho Mobile */}
-            <Link to="/cart" style={{
-              display: 'flex',
-              alignItems: 'center',
-              color: '#fff',
-              textDecoration: 'none',
-              position: 'relative'
-            }}>
-              <span style={{ fontSize: '22px' }}>🛒</span>
-              {totalItems > 0 && (
-                <span style={{
-                  position: 'absolute',
-                  top: '-6px',
-                  right: '-8px',
-                  backgroundColor: '#f59e0b',
-                  color: '#fff',
-                  width: '18px',
-                  height: '18px',
-                  borderRadius: '50%',
-                  fontSize: '10px',
-                  fontWeight: 'bold',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-
-            {/* Botão Menu */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#fff',
-                fontSize: '24px',
-                cursor: 'pointer',
-                padding: '4px',
-                lineHeight: 1
-              }}
-            >
-              {menuOpen ? '✕' : '☰'}
-            </button>
-          </div>
-        </div>
-
-        {/* Menu Mobile Expandido */}
-        {menuOpen && (
-          <div className="header-mobile-menu" style={{
-            backgroundColor: '#234d1f',
-            marginTop: '12px',
-            padding: '16px',
-            borderRadius: '12px'
-          }}>
-            {isAuthenticated() ? (
-              <>
-                <p style={{ 
-                  color: '#a8d4a2', 
-                  fontSize: '14px', 
-                  marginBottom: '12px',
-                  margin: '0 0 12px 0'
-                }}>
-                  Olá, {user?.name?.split(' ')[0]}
-                </p>
-                <button
-                  onClick={() => { logout(); setMenuOpen(false); }}
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: '#fff',
-                    fontSize: '14px',
-                    cursor: 'pointer'
-                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)')}
                 >
                   Sair
                 </button>
               </>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <>
                 <Link
                   to="/login"
-                  onClick={() => setMenuOpen(false)}
                   style={{
-                    padding: '12px',
-                    borderRadius: '8px',
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: '#fff',
+                    color: '#a8d4a2',
                     textDecoration: 'none',
-                    fontSize: '14px',
-                    textAlign: 'center'
+                    fontSize: 15,
+                    fontWeight: 600,
+                    transition: 'color 0.3s ease',
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#d4e8d1')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#a8d4a2')}
                 >
                   Entrar
                 </Link>
                 <Link
                   to="/register"
-                  onClick={() => setMenuOpen(false)}
                   style={{
-                    padding: '12px',
-                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    borderRadius: 8,
                     backgroundColor: '#4a7c43',
                     color: '#fff',
                     textDecoration: 'none',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    textAlign: 'center'
+                    fontSize: 14,
+                    fontWeight: 700,
+                    transition: 'background-color 0.3s ease',
+                    marginLeft: 12,
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3a6b2a')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4a7c43')}
                 >
                   Cadastrar
                 </Link>
-              </div>
+              </>
             )}
-          </div>
+          </nav>
+
+          {/* Botão menu hamburguer mobile */}
+          <button
+            className="menu-button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Abrir menu"
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: '#d4e8d1',
+              fontSize: 28,
+              marginLeft: 12,
+            }}
+          >
+            ☰
+          </button>
+        </div>
+
+        {/* Menu mobile */}
+        {menuOpen && (
+          <nav
+            className="menu-mobile"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+              padding: 16,
+              borderRadius: '0 0 12px 12px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+              position: 'absolute',
+              top: 56,
+              right: 0,
+              width: 200,
+              zIndex: 200,
+            }}
+          >
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                marginBottom: 12,
+                color: '#a8d4a2',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              Entrar
+            </Link>
+            <Link
+              to="/register"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                marginBottom: 12,
+                padding: '8px 12px',
+                borderRadius: 8,
+                backgroundColor: '#4a7c43',
+                color: '#fff',
+                fontWeight: 700,
+                textDecoration: 'none',
+              }}
+            >
+              Cadastrar
+            </Link>
+            <Link
+              to="/cart"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                color: '#a8d4a2',
+                fontWeight: 600,
+                textDecoration: 'none',
+                fontSize: 16,
+              }}
+            >
+              🛒 Carrinho{' '}
+              {totalItems > 0 && (
+                <span
+                  style={{
+                    backgroundColor: '#f59e0b',
+                    color: '#fff',
+                    padding: '2px 8px',
+                    borderRadius: 12,
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    boxShadow: '0 0 6px #f59e0b',
+                  }}
+                >
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          </nav>
         )}
       </header>
 
-      {/* CSS do Header */}
+      {/* CSS responsivo */}
       <style>{`
-        .header-desktop {
-          display: flex !important;
-          with
+        .menu-button {
+          display: none;
         }
-        .header-mobile {
-          display: none !important;
-        }
-        .header-mobile-menu {
-          display: block;
-        }
-        
         @media (max-width: 768px) {
           .header-desktop {
             display: none !important;
           }
-          .header-mobile {
-            display: flex !important;
-          }
-        }
-        
-        @media (min-width: 769px) {
-          .header-mobile-menu {
-            display: none !important;
+          .menu-button {
+            display: block;
           }
         }
       `}</style>

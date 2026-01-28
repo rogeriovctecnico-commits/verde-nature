@@ -16,6 +16,7 @@ function Home() {
   });
 
   return (
+    
     <div
       style={{
         backgroundColor: '#f5f0e8',
@@ -25,10 +26,10 @@ function Home() {
         minWidth: 320,
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
-    > mudando aqui
+    > 
       <section
   style={{
-    background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+    background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
     padding: '10px 20px',        // menos padding vertical
     display: 'flex',
     alignItems: 'center',
@@ -59,27 +60,17 @@ function Home() {
   </Link>
 
   {/* Texto e título - ocupando espaço à esquerda */}
-  <div style={{ maxWidth: '60%' }}>
-    <h1
-      style={{
-        fontSize: 'clamp(20px, 3vw, 28px)',  // fonte menor
-        fontWeight: '900',
-        marginBottom: 6,
-        textShadow: '0 2px 6px rgba(0,0,0,0.2)',
-      }}
-    >
-      🌿 Verde Nature 🌿
-    </h1>
+  <div style={{ maxWidth: '80%' }}>
     <p
-      style={{
-        fontSize: 'clamp(12px, 1.5vw, 16px)', // fonte menor
-        color: '#c1d8b9',
-        lineHeight: 1.3,
-        fontWeight: 500,
-      }}
-    >
-      Produtos naturais para uma vida mais saudável
-    </p>
+            style={{
+              fontSize: 'clamp(12px, 1.5vw, 16px)', // fonte menor
+              color: '#c1d8b9',
+              lineHeight: 1.3,
+              fontWeight: 500,
+            }}
+          >
+            Produtos naturais para uma vida mais saudável
+          </p>
   </div>
 
   {/* Campo de busca à direita */}
