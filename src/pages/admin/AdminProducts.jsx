@@ -8,13 +8,14 @@ function AdminProducts() {
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    image: '',
-    description: '',
-    category: '',
-    stock: ''
-  });
+  name: '',
+  price: '',
+  image: '',
+  description: '',
+  category: '',
+  benefits: '',
+  stock: ''
+});
 
   useEffect(() => {
     loadProducts();
@@ -25,32 +26,49 @@ function AdminProducts() {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value
+  });
+};
+  
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const productData = {
+    name: formData.name,
+    price: parseFloat(formData.price),
+    image: formData.image,
+    description: formData.description,
+    category: formData.category,
+    benefits: formData.benefits,
+    stock: parseInt(formData.stock) || 0
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const productData = {
-      ...formData,
-      price: parseFloat(formData.price),
-      stock: parseInt(formData.stock) || 0
-    };
-
+  try {
     if (editingProduct) {
-      updateProduct(editingProduct.id, productData);
+      await updateProduct(editingProduct.id, productData);
     } else {
-      addProduct(productData);
+      await addProduct(productData);
     }
-
-    setShowModal(false);
+    // Limpar e atualizar lista
+    setFormData({
+      name: '',
+      price: '',
+      image: '',
+      description: '',
+      category: '',
+      benefits: '',
+      stock: ''
+    });
     setEditingProduct(null);
-    setFormData({ name: '', price: '', image: '', description: '', category: '', stock: '' });
+    setShowModal(false);
     loadProducts();
-  };
+  } catch (error) {
+    alert('Erro ao salvar produto');
+    console.error(error);
+  }
+};
 
   const handleEdit = (product) => {
     setEditingProduct(product);

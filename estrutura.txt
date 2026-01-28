@@ -1,33 +1,139 @@
-assets
-components
-context
-data
-pages
-utils
-App.css
-App.jsx
-index.css
-main.jsx
-assets\react.svg
-components\AdminRoute.jsx
-components\CartItem.jsx
-components\Header.jsx
-components\ProductCard.jsx
-components\ProtectedRoute.jsx
-context\AuthContext.jsx
-context\CartContext.jsx
-data\products.js
-pages\admin
-pages\ProductDetails
-pages\Cart.jsx
-pages\Checkout.jsx
-pages\Home.jsx
-pages\login.jsx
-pages\Register.jsx
-pages\admin\AdminLogin.jsx
-pages\admin\AdminOrders.jsx
-pages\admin\AdminProducts.jsx
-pages\admin\Dashboard.jsx
-pages\ProductDetails\ProductDetails.css
-pages\ProductDetails\ProductDetails.jsx
-utils\storage.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          27/01/2026    09:41                node_modules
+d----          25/01/2026    21:33                public
+d----          26/01/2026    20:47                src
+-a---          25/01/2026    18:39            253 .gitignore
+-a---          25/01/2026    18:39            758 eslint.config.js
+-a---          27/01/2026    09:55              0 estrutura.txt
+-a---          25/01/2026    20:32            413 index.html
+-a---          27/01/2026    09:41         202018 package-lock.json
+-a---          27/01/2026    09:41           1343 package.json
+-a---          25/01/2026    20:55             72 postcss.config.js
+-a---          25/01/2026    18:39           1157 README.md
+-a---          25/01/2026    20:49            523 tailwind.config.js
+-a---          27/01/2026    09:48            340 testandoSqlite3.js
+-a---          25/01/2026    18:39            161 vite.config.js
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\public
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          26/01/2026    19:30                images
+-a---          25/01/2026    18:39           1497 vite.svg
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\public\images
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          26/01/2026    11:25                products
+-a---          25/01/2026    21:33         944866 Captura de tela 2026-01-25 213057.png
+-a---          26/01/2026    15:34         502586 chackout-final-errado.png
+-a---          26/01/2026    10:36          31557 estrutura-proj-verde-nature.png
+-a---          26/01/2026    09:20         338592 tela inicio-desenvolvimento.png
+-a---          26/01/2026    19:30         788243 tela-inicio-header-grande.png
+-a---          26/01/2026    08:03          42074 tela-pedido-enviado.png
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\public\images\products
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    10:29           9984 acucar-de-coco-embalada.webp
+-a---          26/01/2026    10:31          22260 acucar-de-coco-embaladab.webp
+-a---          26/01/2026    09:49          37758 acucar-de-coco.webp
+-a---          25/01/2026    21:34          15762 cafeina.webp
+-a---          25/01/2026    21:36          19662 Calciflex-600mg-60Caps-600x600.webp
+-a---          26/01/2026    09:42         130862 cha_de_camomila_organico.webp
+-a---          26/01/2026    09:40          18938 cha-camomla-organico.webp
+-a---          25/01/2026    21:36          19434 Coenzima-Q10-600mg-30Caps-600x600.jpg.webp
+-a---          25/01/2026    21:34          41384 KIT-3-Mag-Treo-Magnesio-Treonina-600x600.jpg.webp
+-a---          25/01/2026    21:34          23316 Maca-Peruana-Gold-Sache-150g-600x600.jpg.webp
+-a---          25/01/2026    21:36          25768 magnesio-inositol.webp
+-a---          25/01/2026    21:34          21186 Magnesio-Quelato-815mg-60Caps-600x600.jpg.webp
+-a---          26/01/2026    10:17          81630 pasta-amendoim-integral.jpg
+-a---          25/01/2026    21:36          20348 Visao-600mg-60Caps-600x600.jpg.webp
+-a---          25/01/2026    21:34          19390 Zinco-Quelato-600mg-60Caps-600x600.jpg.webp
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          25/01/2026    19:32                assets
+d----          26/01/2026    16:43                components
+d----          26/01/2026    16:59                context
+d----          25/01/2026    20:28                data
+d----          26/01/2026    17:50                pages
+d----          26/01/2026    20:48                utils
+-a---          25/01/2026    18:39            606 App.css
+-a---          26/01/2026    20:52           2125 App.jsx
+-a---          26/01/2026    18:39           2461 index.css
+-a---          26/01/2026    09:03            234 main.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\assets
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          25/01/2026    18:39           4126 react.svg
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\components
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    16:43            716 AdminRoute.jsx
+-a---          25/01/2026    21:14           1742 CartItem.jsx
+-a---          26/01/2026    19:28           8678 Header.jsx
+-a---          26/01/2026    18:10           1785 ProductCard.jsx
+-a---          26/01/2026    16:43            699 ProtectedRoute.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\context
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    16:59           3164 AuthContext.jsx
+-a---          25/01/2026    20:01           2041 CartContext.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\data
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    11:25           7135 products.js
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\pages
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          26/01/2026    20:47                admin
+d----          26/01/2026    10:49                ProductDetails
+-a---          26/01/2026    18:13          10223 Cart.jsx
+-a---          26/01/2026    18:12          31476 Checkout.jsx
+-a---          26/01/2026    19:55           5647 Home.jsx
+-a---          26/01/2026    17:12           4438 Login.jsx
+-a---          26/01/2026    16:17           6005 Register.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\pages\admin
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    16:19           5025 AdminLogin.jsx
+-a---          26/01/2026    16:55          18203 AdminOrders.jsx
+-a---          26/01/2026    16:36          14481 AdminProducts.jsx
+-a---          26/01/2026    20:53           9492 Dashboard.jsx
+-a---          26/01/2026    20:56          10057 SeedProducts.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\pages\ProductDetails
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    11:02           2025 ProductDetails.css
+-a---          26/01/2026    18:23           9699 ProductDetails.jsx
+
+    Directory: D:\sistemas-em-dsenvolvimento\verde-nature\src\utils
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/01/2026    20:48           8604 seedProducts.js
+-a---          26/01/2026    17:20           3529 storage.js
+

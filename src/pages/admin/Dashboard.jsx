@@ -1,13 +1,16 @@
 // src/pages/admin/Dashboard.jsx
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { getProducts, getOrders, getUsers } from '../../utils/storage';
+import { getOrders, getUsers } from '../../utils/storage';
+import { getProducts as apiGetProducts, addProduct as apiAddProduct } from '../../utils/api';
 
 function Dashboard() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  
 
-  const products = getProducts();
+  const [products, setProducts] = useState([]);
   const orders = getOrders();
   const users = getUsers();
 
@@ -16,6 +19,56 @@ function Dashboard() {
   const totalRevenue = orders
     .filter(o => o.status === 'concluido')
     .reduce((sum, o) => sum + (o.total || 0), 0);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      const data = await apiGetProducts();
+      setProducts(data);
+    } catch (error) {
+      console.error('Erro ao carregar produtos', error);
+      setProducts([]);
+    }
+  };
+
+  const bulkAddProducts = async () => {
+    // Exemplo de produtos para cadastro em massa
+    const produtosParaAdicionar = [
+      {
+        nome: 'Produto Exemplo 1',
+        preco: 29.99,
+        image: '/images/produto1.jpg',
+        description: 'Descrição do produto 1',
+        category: 'Categoria 1',
+        stock: 100,
+        benefits: 'Benefícios do produto 1'
+      },
+      {
+        nome: 'Produto Exemplo 2',
+        preco: 19.99,
+        image: '/images/produto2.jpg',
+        description: 'Descrição do produto 2',
+        category: 'Categoria 2',
+        stock: 50,
+        benefits: 'Benefícios do produto 2'
+      }
+      // Adicione mais produtos aqui, se quiser
+    ];
+
+    try {
+      for (const produto of produtosParaAdicionar) {
+        await apiAddProduct(produto);
+      }
+      alert('Produtos adicionados em massa com sucesso!');
+      loadProducts(); // Recarrega a lista após inserção
+    } catch (error) {
+      alert('Erro ao adicionar produtos em massa');
+      console.error(error);
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -49,7 +102,7 @@ function Dashboard() {
 
   return (
     <div style={{ backgroundColor: '#f5f0e8', minHeight: '100vh' }}>
-      
+
       {/* Header */}
       <header style={{
         backgroundColor: '#2d5a27',
@@ -90,7 +143,7 @@ function Dashboard() {
 
       {/* Conteúdo */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px' }}>
-        
+
         {/* Cards de Estatísticas */}
         <div style={{
           display: 'grid',
@@ -103,121 +156,68 @@ function Dashboard() {
             <p style={{ fontSize: '32px', fontWeight: 'bold', color: '#2d5a27' }}>{products.length}</p>
             <p style={{ color: '#6b7c68', fontSize: '14px' }}>Produtos</p>
           </div>
-          
+
           <div style={statCardStyle}>
             <p style={{ fontSize: '36px', marginBottom: '8px' }}>🛒</p>
-            
-<p style={{ fontSize: '32px', fontWeight: 'bold', color: '#f59e0b' }}>{pendingOrders}</p>
+            <p style={{ fontSize: '32px', fontWeight: 'bold', color: '#f59e0b' }}>{pendingOrders}</p>
             <p style={{ color: '#6b7c68', fontSize: '14px' }}>Pedidos Pendentes</p>
           </div>
-          
+
           <div style={statCardStyle}>
             <p style={{ fontSize: '36px', marginBottom: '8px' }}>✅</p>
             <p style={{ fontSize: '32px', fontWeight: 'bold', color: '#4a7c43' }}>{completedOrders}</p>
             <p style={{ color: '#6b7c68', fontSize: '14px' }}>Pedidos Concluídos</p>
           </div>
-          
+
           <div style={statCardStyle}>
             <p style={{ fontSize: '36px', marginBottom: '8px' }}>👥</p>
             <p style={{ fontSize: '32px', fontWeight: 'bold', color: '#2d5a27' }}>{users.length}</p>
             <p style={{ color: '#6b7c68', fontSize: '14px' }}>Clientes</p>
           </div>
-          
-          <div style={statCardStyle}>
-            <p style={{ fontSize: '36px', marginBottom: '8px' }}>💰</p>
-            <p style={{ fontSize: '28px', fontWeight: 'bold', color: '#4a7c43' }}>
-              R$ {totalRevenue.toFixed(2).replace('.', ',')}
-            </p>
-            <p style={{ color: '#6b7c68', fontSize: '14px' }}>Receita Total</p>
-          </div>
+          <Link to="/admin/orders">Gerenciar Pedidos</Link>
+          <Link to="/admin/orders/create">Criar Pedido</Link>
         </div>
 
-        {/* Menu de Ações */}
-        <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#2d5a27', marginBottom: '20px' }}>
-          Gerenciamento
-        </h2>
-        
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '20px'
-        }}>
-          <Link to="/admin/products" style={menuItemStyle}>
-            <span style={{ fontSize: '32px' }}>📦</span>
-            <div>
-              <p style={{ fontWeight: 'bold', fontSize: '18px' }}>Gerenciar Produtos</p>
-              <p style={{ color: '#6b7c68', fontSize: '14px' }}>Adicionar, editar e remover produtos</p>
-            </div>
-          </Link>
-          
-          <Link to="/admin/orders" style={menuItemStyle}>
-            <span style={{ fontSize: '32px' }}>🛒</span>
-            <div>
-              <p style={{ fontWeight: 'bold', fontSize: '18px' }}>Gerenciar Pedidos</p>
-              <p style={{ color: '#6b7c68', fontSize: '14px' }}>Ver e atualizar status dos pedidos</p>
-            </div>
-          </Link>
-          
-          <Link to="/admin/customers" style={menuItemStyle}>
-            <span style={{ fontSize: '32px' }}>👥</span>
-            <div>
-              <p style={{ fontWeight: 'bold', fontSize: '18px' }}>Clientes</p>
-              <p style={{ color: '#6b7c68', fontSize: '14px' }}>Ver clientes cadastrados</p>
-            </div>
-          </Link>
+        {/* Menu administrativo (exemplo) */}
+        <div style={{ display: 'grid', gap: '20px' }}>
+          <Link to="/admin/products" style={menuItemStyle}>Gerenciar Produtos</Link>
+          <Link to="/admin/orders" style={menuItemStyle}>Gerenciar Pedidos</Link>
+          <Link to="/admin/users" style={menuItemStyle}>Gerenciar Usuários</Link>
         </div>
 
-        {/* Pedidos Recentes */}
-        <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#2d5a27', marginTop: '40px', marginBottom: '20px' }}>
-          Pedidos Recentes
-        </h2>
-        
-        <div style={cardStyle}>
-          {orders.length === 0 ? (
-            <p style={{ color: '#6b7c68', textAlign: 'center', padding: '40px' }}>
-              Nenhum pedido ainda
-            </p>
-          ) : (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ borderBottom: '2px solid #e8e4dc' }}>
-                    <th style={{ textAlign: 'left', padding: '12px', color: '#4a5c47', fontSize: '14px' }}>ID</th>
-                    <th style={{ textAlign: 'left', padding: '12px', color: '#4a5c47', fontSize: '14px' }}>Cliente</th>
-                    <th style={{ textAlign: 'left', padding: '12px', color: '#4a5c47', fontSize: '14px' }}>Total</th>
-                    <th style={{ textAlign: 'left', padding: '12px', color: '#4a5c47', fontSize: '14px' }}>Status</th>
-                    <th style={{ textAlign: 'left', padding: '12px', color: '#4a5c47', fontSize: '14px' }}>Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.slice(-5).reverse().map(order => (
-                    <tr key={order.id} style={{ borderBottom: '1px solid #e8e4dc' }}>
-                      <td style={{ padding: '12px', fontSize: '14px', color: '#3d4a3a' }}>#{order.id}</td>
-                      <td style={{ padding: '12px', fontSize: '14px', color: '#3d4a3a' }}>{order.customer?.name || 'N/A'}</td>
-                      <td style={{ padding: '12px', fontSize: '14px', color: '#4a7c43', fontWeight: '600' }}>
-                        R$ {(order.total || 0).toFixed(2).replace('.', ',')}
-                      </td>
-                      <td style={{ padding: '12px' }}>
-                        <span style={{
-                          padding: '4px 12px',
-                          borderRadius: '20px',
-                          fontSize: '12px',
-                          fontWeight: '600',
-                          backgroundColor: order.status === 'pendente' ? '#fef3c7' : order.status === 'concluido' ? '#d1fae5' : '#fee2e2',
-                          color: order.status === 'pendente' ? '#92400e' : order.status === 'concluido' ? '#065f46' : '#dc2626'
-                        }}>
-                          {order.status}
-                        </span>
-                      </td>
-                      <td style={{ padding: '12px', fontSize: '14px', color: '#6b7c68' }}>
-                        {new Date(order.createdAt).toLocaleDateString('pt-BR')}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+               {/* Botão para cadastro em massa e para gerenciar produtos */}
+        <div style={{ marginTop: '40px', textAlign: 'center', display: 'flex', gap: '16px', justifyContent: 'center' }}>
+          <button
+            onClick={bulkAddProducts}
+            style={{
+              padding: '14px 28px',
+              backgroundColor: '#4a7c43',
+              color: '#fff',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              fontSize: '16px',
+              border: 'none'
+            }}
+          >
+            Cadastrar Produtos em Massa
+          </button>
+
+          <button
+            onClick={() => navigate('/admin/products')}
+            style={{
+              padding: '14px 28px',
+              backgroundColor: '#3a6b2a',
+              color: '#fff',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              fontSize: '16px',
+              border: 'none'
+            }}
+          >
+            Gerenciar Produtos
+          </button>
         </div>
 
       </div>

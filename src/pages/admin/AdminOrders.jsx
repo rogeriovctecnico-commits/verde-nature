@@ -52,7 +52,7 @@ function AdminOrders() {
 
   return (
     <div style={{ backgroundColor: '#f5f0e8', minHeight: '100vh' }}>
-      
+
       {/* Header */}
       <header style={{
         backgroundColor: '#2d5a27',
@@ -76,11 +76,11 @@ function AdminOrders() {
 
       {/* Conteúdo */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px' }}>
-        
+
         {/* Filtros */}
-        <div style={{ 
-          display: 'flex', 
-          gap: '12px', 
+        <div style={{
+          display: 'flex',
+          gap: '12px',
           marginBottom: '24px',
           flexWrap: 'wrap'
         }}>
@@ -199,7 +199,7 @@ function AdminOrders() {
                               fontSize: '12px',
                               marginLeft: '8px'
                             }}
-                            >
+                          >
                             👁️ Ver
                           </button>
                         </td>
@@ -238,9 +238,9 @@ function AdminOrders() {
             overflowY: 'auto'
           }}>
             {/* Header do Modal */}
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
               alignItems: 'center',
               marginBottom: '24px'
             }}>
@@ -330,7 +330,7 @@ function AdminOrders() {
                 🛒 Itens do Pedido
               </h3>
               {selectedOrder.items?.map((item, index) => (
-                <div 
+                <div
                   key={index}
                   style={{
                     display: 'flex',
@@ -341,8 +341,8 @@ function AdminOrders() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.name}
                       style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }}
                     />

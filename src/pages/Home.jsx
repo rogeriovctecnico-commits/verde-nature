@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProductCard from '../components/ProductCard';
@@ -17,107 +16,134 @@ function Home() {
   });
 
   return (
-    <div style={{ backgroundColor: '#f5f0e8', minHeight: '100vh' }}>
+    <div
+      style={{
+        backgroundColor: '#f5f0e8',
+        minHeight: '90vh',
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 320,
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      }}
+    > mudando aqui
+      <section
+  style={{
+    background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+    padding: '10px 20px',        // menos padding vertical
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'relative',
+    color: '#fff',
+    minHeight: '90px',          // altura mínima menor
+  }}
+>
+  {/* Link Admin - Canto superior direito */}
+  <Link
+    to="/admin/login"
+    style={{
+      position: 'absolute',
+      top: 10,
+      right: 20,
+      color: 'rgba(255,255,255,0.7)',
+      textDecoration: 'none',
+      fontSize: 11,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 5,
+      fontWeight: 600,
+      zIndex: 10,
+    }}
+  >
+    🔐 Admin
+  </Link>
 
+  {/* Texto e título - ocupando espaço à esquerda */}
+  <div style={{ maxWidth: '60%' }}>
+    <h1
+      style={{
+        fontSize: 'clamp(20px, 3vw, 28px)',  // fonte menor
+        fontWeight: '900',
+        marginBottom: 6,
+        textShadow: '0 2px 6px rgba(0,0,0,0.2)',
+      }}
+    >
+      🌿 Verde Nature 🌿
+    </h1>
+    <p
+      style={{
+        fontSize: 'clamp(12px, 1.5vw, 16px)', // fonte menor
+        color: '#c1d8b9',
+        lineHeight: 1.3,
+        fontWeight: 500,
+      }}
+    >
+      Produtos naturais para uma vida mais saudável
+    </p>
+  </div>
 
-
-      {/* Hero */}
-      <section style={{
-        background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
-        padding: '24px 16px',
-        textAlign: 'center',
-        position: 'relative'
-      }}>
-        {/* Link Admin - Canto superior direito */}
-        <Link to="/admin/login" 
-          style={{
-            position: 'absolute',
-            top: '10px',
-            right: '16px',
-            color: 'rgba(255,255,255,0.6)',
-            textDecoration: 'none',
-            fontSize: '11px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px'
-          }}
-        >
-          🔐 Admin
-        </Link>
-
-        <div style={{ maxWidth: '300px', margin: '0 auto' }}>
-          <h1 style={{
-            fontSize: 'clamp(24px, 5vw, 30px)',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            marginBottom: '8px'
-          }}>
-            🌿 Verde Nature 🌿
-          </h1>
-          <p style={{
-            fontSize: 'clamp(19px, 5vw, 16px)',
-            color: '#d4e8d1',
-            marginBottom: '16px',
-            justifyContent: 'justify',
-            display: 'flex',
-          }}>
-            Produtos naturais para uma vida mais saudável
-          </p>
-
-          {/* Busca */}
-          <input
-            type="text"
-            placeholder="🔍 Buscar produtos..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              width: '100%',
-              maxWidth: '360px',
-              padding: '12px 18px',
-              borderRadius: '50px',
-              border: 'none',
-              fontSize: '14px',
-              backgroundColor: '#fdfbf7',
-              color: '#3d4a3a',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-              outline: 'none',
-              boxSizing: 'border-box'
-            }}
-          />
-        </div>
-      </section>
+  {/* Campo de busca à direita */}
+  <input
+    type="text"
+    placeholder="🔍 Buscar produtos..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    style={{
+      width: '260px',
+      padding: '10px 18px',
+      borderRadius: 50,
+      border: 'none',
+      fontSize: 14,
+      backgroundColor: '#fdfbf7',
+      color: '#3d4a3a',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+      outline: 'none',
+      transition: 'box-shadow 0.3s ease',
+    }}
+    onFocus={(e) => (e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)')}
+    onBlur={(e) => (e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)')}
+  />
+</section>
 
       {/* Filtros e Produtos */}
-      <section style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '24px 16px 48px'
-      }}>
-
-        {/* Categorias */}
-        <div style={{
+      <section
+        style={{
+          maxWidth: 1280,
+          margin: '40px auto 80px',
+          padding: '0 14px',
+          flexGrow: 1,
           display: 'flex',
-          flexWrap: 'wrap',
-          gap: '8px',
-          marginBottom: '24px',
-          justifyContent: 'center'
-        }}>
-          {categories.map(category => (
+          flexDirection: 'column',
+          gap: 24,
+        }}
+      >
+        {/* Categorias */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 12,
+            justifyContent: 'center',
+          }}
+        >
+          {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
               style={{
-                padding: '10px 18px',
-                borderRadius: '50px',
+                padding: '12px 26px',
+                borderRadius: 50,
                 border: 'none',
-                fontSize: '13px',
-                fontWeight: '600',
+                fontSize: 14,
+                fontWeight: '700',
                 cursor: 'pointer',
                 backgroundColor: selectedCategory === category ? '#4a7c43' : '#fdfbf7',
-                color: selectedCategory === category ? '#ffffff' : '#4a5c47',
+                color: selectedCategory === category ? '#fff' : '#4a5c47',
                 boxShadow: selectedCategory === category
-                  ? '0 4px 15px rgba(74, 124, 67, 0.3)'
-                  : '0 2px 8px rgba(0,0,0,0.05)'
+                  ? '0 6px 20px rgba(74, 124, 67, 0.35)'
+                  : '0 2px 8px rgba(0,0,0,0.07)',
+                transition: 'all 0.3s ease',
+                userSelect: 'none',
               }}
             >
               {category}
@@ -126,56 +152,61 @@ function Home() {
         </div>
 
         {/* Grid de Produtos */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: '20px'
-        }}>
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-
-        {/* Sem resultados */}
-        {filteredProducts.length === 0 && (
-          <div style={{
-            textAlign: 'center',
-            padding: '60px 20px'
-          }}>
-            <p style={{
-              fontSize: '18px',
-              color: '#6b7c68'
-            }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+            gap: 28,
+            paddingBottom: 24,
+          }}
+        >
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          ) : (
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', fontSize: 18, color: '#6b7c68' }}>
               😕 Nenhum produto encontrado
             </p>
-          </div>
-        )}
+          )}
+        </div>
       </section>
 
       {/* Footer */}
-      <footer style={{
-        backgroundColor: '#2d5a27',
-        padding: '32px 16px',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ color: '#ffffff', fontSize: '18px', marginBottom: '12px' }}>
+      <footer
+        style={{
+          backgroundColor: '#2d5a27',
+          padding: '32px 24px',
+          textAlign: 'center',
+          color: '#d4e8d1',
+          fontSize: 14,
+          userSelect: 'none',
+        }}
+      >
+        <h3
+          style={{
+            color: '#ffffff',
+            fontSize: 20,
+            marginBottom: 16,
+            fontWeight: 'bold',
+          }}
+        >
           🌿 Verde Nature
         </h3>
-        <p style={{ color: '#d4e8d1', fontSize: '13px', marginBottom: '16px' }}>
-          Produtos naturais de qualidade
-        </p>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '16px',
-          flexWrap: 'wrap',
-          marginBottom: '16px'
-        }}>
-          <span style={{ color: '#a8d4a2', fontSize: '13px' }}>📱 (27) 99950-5856</span>
+        <p style={{ marginBottom: 20 }}>Produtos naturais de qualidade</p>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 24,
+            flexWrap: 'wrap',
+            fontSize: 14,
+            color: '#a8d4a2',
+          }}
+        >
+          <span>📱 (27) 99950-5856</span>
         </div>
-        <p style={{ color: '#7ab573', fontSize: '11px' }}>
-          © 2025 Verde Nature
-        </p>
+        <p style={{ fontSize: 12, color: '#7ab573' }}>© 2025 Verde Nature</p>
       </footer>
     </div>
   );
