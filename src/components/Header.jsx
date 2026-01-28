@@ -122,7 +122,7 @@ function Header() {
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)')}
                 >
                   Sair
-                </button>
+                </button >
               </>
             ) : (
               <>
@@ -168,7 +168,7 @@ function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menu"
             style={{
-              display: 'none',
+              display: 'flex',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
@@ -183,7 +183,7 @@ function Header() {
 
         {/* Menu mobile */}
         {menuOpen && (
-          <nav
+          <><nav
             className="menu-mobile"
             style={{
               display: 'flex',
@@ -199,44 +199,45 @@ function Header() {
               zIndex: 200,
             }}
           >
-            <Link
-              to="/login"
+            <Link to="/login"
               onClick={() => setMenuOpen(false)}
               style={{
-                marginBottom: 12,
-                color: '#a8d4a2',
-                fontWeight: 600,
-                textDecoration: 'none',
-              }}
-            >
-              Entrar
+                      margin: '12px 0px 0px 100px',
+                      padding: '8px 12px',
+                      borderRadius: 8,
+                      backgroundColor: '#4a7c43',
+                      color: '#fff',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      }}
+                      >🔐 Entrar
             </Link>
-            <Link
-              to="/register"
+            
+            <Link to="/register"
               onClick={() => setMenuOpen(false)}
               style={{
-                marginBottom: 12,
-                padding: '8px 12px',
-                borderRadius: 8,
-                backgroundColor: '#4a7c43',
-                color: '#fff',
-                fontWeight: 700,
-                textDecoration: 'none',
-              }}
-            >
-              Cadastrar
+                      margin: '12px 0px 0px 80px',
+                      padding: '8px 12px',
+                      borderRadius: 8,
+                      backgroundColor: '#4a7c43',
+                      color: '#fff',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      }}
+                >📝Cadastrar
             </Link>
             <Link
               to="/cart"
               onClick={() => setMenuOpen(false)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                color: '#a8d4a2',
-                fontWeight: 600,
-                textDecoration: 'none',
-                fontSize: 16,
+                margin: '12px 0px 0px 100px',
+                margin: '12px 0px 0px 80px',
+                      padding: '8px 12px',
+                      borderRadius: 8,
+                      backgroundColor: '#4a7c43',
+                      color: '#fff',
+                      fontWeight: 700,
+                      textDecoration: 'none',
               }}
             >
               🛒 Carrinho{' '}
@@ -257,11 +258,11 @@ function Header() {
               )}
             </Link>
           </nav>
-        )}
+        )</>)}
       </header>
 
       {/* CSS responsivo */}
-      <style>{`
+      < style > {`
         .menu-button {
           display: none;
         }
@@ -273,7 +274,7 @@ function Header() {
             display: block;
           }
         }
-      `}</style>
+      `}</style >
     </>
   );
 }
