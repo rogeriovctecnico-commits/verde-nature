@@ -12,7 +12,8 @@ function Header() {
     <>
       <header
         style={{
-          background: 'linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%)',
+          width: '100%',
+          background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
           padding: '12px 24px',
           position: 'sticky',
           top: 0,

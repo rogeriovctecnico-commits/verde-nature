@@ -19,7 +19,7 @@ function Home() {
     
     <div
       style={{
-        backgroundColor: '#f5f0e8',
+        backgroundColor: '#F9FBFC', /* branco gelo */
         minHeight: '90vh',
         display: 'flex',
         flexDirection: 'column',
