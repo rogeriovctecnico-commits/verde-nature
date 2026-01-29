@@ -43,7 +43,7 @@ function Header() {
                 userSelect: 'none',
               }}
             >
-              🌿 Verde Nature
+              🌿 Verde Nature 🌿
             </h1>
           </Link>
 
@@ -169,13 +169,15 @@ function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menu"
             style={{
+              
+              position: 'relative',
               display: 'flex',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
               color: '#d4e8d1',
               fontSize: 28,
-              marginLeft: 12,
+              marginLeft: 0,
             }}
           >
             ☰
