@@ -1,0 +1,214 @@
+/* Cores suaves – verde musgo claro, tons pastel */
+:root {
+  --green-light: #a2cbb0;
+  --green-medium: #7ea87b;
+  --green-dark: #5a7a4f;
+  --background-gradient: linear-gradient(135deg, #c9dec5 20%, #a2cbb0 100%);
+  --text-light: #f0f9f1;
+  --text-medium: #3a4a33;
+  --accent-yellow: #f3c677;
+}
+
+.header {
+  width: 100%;
+  background: var(--background-gradient);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  user-select: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: relative;
+}
+
+.logo {
+  color: var(--green-dark);
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.navDesktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green-medium);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.menuItem:hover {
+  color: var(--green-dark);
+}
+
+.icon {
+  font-size: 22px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: var(--accent-yellow);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 0 6px var(--accent-yellow);
+  user-select: none;
+}
+
+.greeting {
+  color: var(--green-dark);
+  font-size: 15px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.logoutButton {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: rgba(162, 203, 176, 0.3);
+  color: var(--green-medium);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: rgba(162, 203, 176, 0.5);
+  color: var(--green-dark);
+}
+
+.registerButton {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: var(--green-medium);
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.registerButton:hover {
+  background-color: var(--green-dark);
+  color: var(--text-light);
+}
+
+/* Menu hamburguer */
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--green-medium);
+  font-size: 28px;
+  transition: color 0.3s ease;
+}
+
+.menuButton:hover {
+  color: var(--green-dark);
+}
+
+/* Menu mobile */
+.navMobile {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 56px;
+  right: 24px;
+  background-color: var(--green-light);
+  padding: 16px;
+  border-radius: 8px;
+  gap: 16px;
+  z-index: 101;
+  min-width: 180px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.greetingMobile {
+  color: var(--green-dark);
+  font-size: 16px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.logoutButtonMobile {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: rgba(162, 203, 176, 0.4);
+  color: var(--green-medium);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButtonMobile:hover {
+  background-color: rgba(162, 203, 176, 0.6);
+  color: var(--green-dark);
+}
+
+.registerButtonMobile {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: var(--green-medium);
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.registerButtonMobile:hover {
+  background-color: var(--green-dark);
+  color: var(--text-light);
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .navDesktop {
+    display: none;
+  }
+  .menuButton {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .navMobile {
+    display: none !important;
+  }
+  .menuButton {
+    display: none;
+  }
+}

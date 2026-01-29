@@ -16,52 +16,34 @@ function Home() {
   });
 
   return (
-    
+
     <div
       style={{
-        backgroundColor: '#F9FBFC', /* branco gelo */
+        backgroundColor: '#c1d8b9', /* branco cinza */
         minHeight: '90vh',
         display: 'flex',
         flexDirection: 'column',
         minWidth: 320,
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
-    > 
+    >
       <section
-  style={{
-    background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
-    padding: '10px 20px',        // menos padding vertical
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    position: 'relative',
-    color: '#fff',
-    minHeight: '90px',          // altura mínima menor
-  }}
->
-  {/* Link Admin - Canto superior direito */}
-  <Link
-    to="/admin/login"
-    style={{
-      position: 'absolute',
-      top: 10,
-      right: 20,
-      color: 'rgba(255,255,255,0.7)',
-      textDecoration: 'none',
-      fontSize: 11,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 5,
-      fontWeight: 600,
-      zIndex: 10,
-    }}
-  >
-    🔐 Admin
-  </Link>
+        style={{
+          background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
+          padding: '10px 20px',        // menos padding vertical
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          position: 'relative',
+          color: '#black',
+          minHeight: '90px',          // altura mínima menor
+        }}
+      >
+        
 
-  {/* Texto e título - ocupando espaço à esquerda */}
-  <div style={{ maxWidth: '80%' }}>
-    <p
+        {/* Texto e título - ocupando espaço à esquerda */}
+        <div style={{ maxWidth: '80%' }}>
+          <p
             style={{
               fontSize: 'clamp(12px, 1.5vw, 16px)', // fonte menor
               color: '#c1d8b9',
@@ -71,30 +53,30 @@ function Home() {
           >
             Produtos naturais para uma vida mais saudável
           </p>
-  </div>
+        </div>
 
-  {/* Campo de busca à direita */}
-  <input
-    type="text"
-    placeholder="🔍 Buscar produtos..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    style={{
-      width: '260px',
-      padding: '10px 18px',
-      borderRadius: 50,
-      border: 'none',
-      fontSize: 14,
-      backgroundColor: '#fdfbf7',
-      color: '#3d4a3a',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-      outline: 'none',
-      transition: 'box-shadow 0.3s ease',
-    }}
-    onFocus={(e) => (e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)')}
-    onBlur={(e) => (e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)')}
-  />
-</section>
+        {/* Campo de busca à direita */}
+        <input
+          type="text"
+          placeholder="🔍 Buscar produtos..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: '260px',
+            padding: '10px 18px',
+            borderRadius: 50,
+            border: 'none',
+            fontSize: 14,
+            backgroundColor: '#fdfbf7',
+            color: '#3d4a3a',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+            outline: 'none',
+            transition: 'box-shadow 0.3s ease',
+          }}
+          onFocus={(e) => (e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)')}
+          onBlur={(e) => (e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)')}
+        />
+      </section>
 
       {/* Filtros e Produtos */}
       <section
