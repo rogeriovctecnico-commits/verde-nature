@@ -43,7 +43,7 @@ function Home() {
   <Link
     to="/admin/login"
     style={{
-      position: 'absolute',
+      // position: 'absolute',
       top: 10,
       right: 20,
       color: 'rgba(255,255,255,0.7)',
