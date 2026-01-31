@@ -28,7 +28,6 @@ function Home() {
       }}
     >
       <section
-<<<<<<< HEAD
         style={{
           background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
           padding: '10px 20px',        // menos padding vertical
@@ -41,38 +40,6 @@ function Home() {
         }}
       >
         
-=======
-  style={{
-    background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
-    padding: '10px 20px',        // menos padding vertical
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    position: 'relative',
-    color: '#fff',
-    minHeight: '90px',          // altura mínima menor
-  }}
->
-  {/* Link Admin - Canto superior direito */}
-  <Link
-    to="/admin/login"
-    style={{
-      // position: 'absolute',
-      top: 10,
-      right: 20,
-      color: 'rgba(255,255,255,0.7)',
-      textDecoration: 'none',
-      fontSize: 11,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 5,
-      fontWeight: 600,
-      zIndex: 10,
-    }}
-  >
-    🔐 Admin
-  </Link>
->>>>>>> b53aad6e8c8f15152d2a9e3e5ced2efa73d86eae
 
         {/* Texto e título - ocupando espaço à esquerda */}
         <div style={{ maxWidth: '80%' }}>
