@@ -1,4 +1,4 @@
-import SeedProducts from './pages/admin/SeedProducts';
+import SeedProducts from './pages/admin/SeedProducts.jsx';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';

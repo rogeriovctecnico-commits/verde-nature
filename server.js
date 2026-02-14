@@ -14,7 +14,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static('src/pages', { extensions: ['js'], setHeaders: (res, path) => {
+  if (path.endsWith('.js')) {
+    res.setHeader('Content-Type', 'application/javascript');
+  }
+}}));
 // Criação das tabelas
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS produtos (
