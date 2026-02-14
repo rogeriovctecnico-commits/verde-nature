@@ -42,17 +42,23 @@ function Home() {
         
 
         {/* Texto e título - ocupando espaço à esquerda */}
-        <div style={{ maxWidth: '80%' }}>
-          <p
+        <div style={{ maxWidth: '80%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 4,
+                      marginLeft: 125,}}>
+          <h2
             style={{
-              fontSize: 'clamp(12px, 1.5vw, 16px)', // fonte menor
-              color: '#c1d8b9',
+              fontSize: 'clamp(12px, 1.5vw, 32px)', // fonte menor
+              color: '#3d4a3a', // cor preta '#ffffffff',
               lineHeight: 1.3,
               fontWeight: 500,
+              marginLeft: 8,
+
             }}
           >
             Produtos naturais para uma vida mais saudável
-          </p>
+          </h2>
         </div>
 
         {/* Campo de busca à direita */}
