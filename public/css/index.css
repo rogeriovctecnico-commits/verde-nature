@@ -4,6 +4,7 @@
   padding: 0;
   font-family: 'Poppins', sans-serif;
   background-color: aliceblue;
+  border-radius: 15px;
 }
 
 input:focus,
@@ -11,6 +12,7 @@ select:focus,
 textarea:focus {
   border-color: #f7faf7 !important;
   box-shadow: 0 0 0 3px rgba(74, 124, 67, 0.1);
+  border-radius: 15px;
 }
 
 /* Links */

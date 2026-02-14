@@ -29,7 +29,7 @@ function Home() {
     >
       <section
         style={{
-          background: 'linear-gradient(135deg, #2d5a27 20%, #4a7c43 100%)',
+          background: 'linear-gradient(135deg, #ffffff 20%, #ffffff 100%)',
           padding: '10px 20px',        // menos padding vertical
           display: 'flex',
           alignItems: 'center',

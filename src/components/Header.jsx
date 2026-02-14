@@ -1,19 +1,22 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
-import styles from './Header.module.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import styles from "./Header.module.css";
 
 // MenuItem com classes CSS
 function MenuItem({ to, icon, label, badge, onClick, className }) {
   return onClick ? (
-    <button onClick={onClick} className={`${styles.menuItem} ${className || ''}`}>
+    <button
+      onClick={onClick}
+      className={`${styles.menuItem} ${className || ""}`}
+    >
       <span className={styles.icon}>{icon}</span>
       <span>{label}</span>
       {badge > 0 && <span className={styles.badge}>{badge}</span>}
     </button>
   ) : (
-    <Link to={to} className={`${styles.menuItem} ${className || ''}`}>
+    <Link to={to} className={`${styles.menuItem} ${className || ""}`}>
       <span className={styles.icon}>{icon}</span>
       <span>{label}</span>
       {badge > 0 && <span className={styles.badge}>{badge}</span>}
@@ -44,14 +47,24 @@ function Header() {
           {isAuthenticated() ? (
             <>
               <span className={styles.greeting}>
-                Olá, <strong>{user?.name?.split(' ')[0]}</strong>
+                Olá, <strong>{user?.name?.split(" ")[0]}</strong>
               </span>
-              <MenuItem onClick={logout} icon="🚪" label="Sair" className={styles.logoutButton}/>
+              <MenuItem
+                onClick={logout}
+                icon="🚪"
+                label="Sair"
+                className={styles.logoutButton}
+              />
             </>
           ) : (
             <>
-              <MenuItem to="./pages/login" icon="🔐" label="Entrar" />
-              <MenuItem to="./pages/register" icon="✍️" label="Cadastrar" className={styles.registerButton}/>
+              <MenuItem to="../pages/Login" icon="🔐" label="Entrar" />
+              <MenuItem
+                to="../pages/Register"
+                icon="✍️"
+                label="Cadastrar"
+                className={styles.registerButton}
+              />
             </>
           )}
         </nav>
@@ -71,11 +84,11 @@ function Header() {
             // position: 'absolute',
             top: 0,
             right: 0,
-            color: 'rgba(255,255,255,0.7)',
-            textDecoration: 'none',
+            color: "rgba(255,255,255,0.7)",
+            textDecoration: "none",
             fontSize: 11,
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
             gap: 5,
             fontWeight: 600,
             zIndex: 10,
@@ -91,7 +104,7 @@ function Header() {
           {isAuthenticated() ? (
             <>
               <span className={styles.greetingMobile}>
-                Olá, <strong>{user?.name?.split(' ')[0]}</strong>
+                Olá, <strong>{user?.name?.split(" ")[0]}</strong>
               </span>
               <MenuItem
                 onClick={() => {
@@ -112,12 +125,13 @@ function Header() {
             </>
           ) : (
             <>
-              <MenuItem to="/login" 
-              icon="🔐" 
-              label="Entrar" 
-              onClick={handleMenuItemClick} />
               <MenuItem
-
+                to="/login"
+                icon="🔐"
+                label="Entrar"
+                onClick={handleMenuItemClick}
+              />
+              <MenuItem
                 to="/register"
                 icon="✍️"
                 label="Cadastrar"
