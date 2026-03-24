@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "deploy": "gh-pages -d dist"
+},
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
@@ -29,6 +30,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
@@ -38,7 +40,7 @@
   "main": "eslint.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rogeriovctecnico-commits/verde-nature.git"
+    "homepage": "https://rogeriovctecnico-commits.github.io/verde-nature"
   },
   "keywords": [],
   "author": "",
