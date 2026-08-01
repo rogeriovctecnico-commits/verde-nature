@@ -26,6 +26,8 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <Routes>
+            
+            <Px basename="/verde-nature/"></Px>
 
             {/* Rota raiz redireciona para home */}
             <Route path="/" element={<Navigate to="/Home" replace />} />
